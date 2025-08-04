@@ -8,8 +8,8 @@ app.secret_key = 'your_secret_key'
 def get_db_connection():
     return mysql.connector.connect(
         host='localhost',
-        user='root',      
-        password='Prasad@123',  
+        user='libraryuser',      
+        password='Library@123',  
         database='library'
     )
 
@@ -403,4 +403,5 @@ def view_publishers():
     return render_template('publishers.html', publishers=pubs)
 
 if __name__ == '__main__':
+
     app.run(debug=True)
