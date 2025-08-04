@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Issue Book{% endblock %}
+{% block content %}
+<h2>Issue a Book</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Book *</label>
+            <select name="book_id" class="form-control" required>
+                <option value="">Select a book</option>
+                {% for b in books %}
+                <option value="{{ b.book_id }}">{{ b.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>Member *</label>
+            <select name="member_id" class="form-control" required>
+                <option value="">Select a member</option>
+                {% for m in members %}
+                <option value="{{ m.member_id }}">{{ m.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Loan Date</label>
+            <input type="date" name="loan_date" class="form-control" value="{{ today }}" required>
+        </div>
+        <div class="col-md-6">
+            <label>Due Date</label>
+            <input type="date" name="due_date" class="form-control" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Issue Book</button>
+    <a href="{{ url_for('view_loans') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

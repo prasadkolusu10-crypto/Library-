@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="p-4">
+    <h1>📚 Library Dashboard</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5>Total Books</h5>
+                    <h2>{{ total_books }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5>Members</h5>
+                    <h2>{{ total_members }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5>Active Loans</h5>
+                    <h2>{{ total_loans }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if overdues %}
+    <div class="mt-5">
+        <h3>Overdue Books</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Borrower</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in overdues %}
+                <tr>
+                    <td>{{ o.title }}</td>
+                    <td>{{ o.member }}</td>
+                    <td class="text-danger">{{ o.due_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

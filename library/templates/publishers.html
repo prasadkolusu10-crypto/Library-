@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Publishers{% endblock %}
+{% block content %}
+<h2>Publishers</h2>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in publishers %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.address }}</td>
+            <td>{{ p.phone }}</td>
+            <td>{{ p.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

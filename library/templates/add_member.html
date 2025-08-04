@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Add Member{% endblock %}
+{% block content %}
+<h2>Add New Member</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>First Name *</label>
+            <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label>Last Name *</label>
+            <input type="text" name="last_name" class="form-control" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Email *</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Address</label>
+        <textarea name="address" class="form-control"></textarea>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Membership Start</label>
+            <input type="date" name="membership_date" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label>Membership Expiry</label>
+            <input type="date" name="membership_expiry" class="form-control" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save Member</button>
+    <a href="{{ url_for('view_members') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

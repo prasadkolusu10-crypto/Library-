@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Authors{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Authors</h2>
+    <a href="{{ url_for('add_author') }}" class="btn btn-primary">➕ Add Author</a>
+</div>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Birth Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in authors %}
+        <tr>
+            <td>{{ a.full_name }}</td>
+            <td>{{ a.nationality }}</td>
+            <td>{{ a.birth_date }}</td>
+            <td>
+                <a href="{{ url_for('edit_author', author_id=a.author_id) }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{{ url_for('delete_author', author_id=a.author_id) }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this author?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

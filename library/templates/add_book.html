@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<h2>Add New Book</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Title *</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label>ISBN *</label>
+            <input type="text" name="isbn" class="form-control" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label>Publication Year</label>
+            <input type="number" name="publication_year" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label>Edition</label>
+            <input type="number" name="edition" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label>Total Copies</label>
+            <input type="number" name="total_copies" class="form-control" value="1" min="1">
+        </div>
+        <div class="col-md-3">
+            <label>Publisher *</label>
+            <select name="publisher_id" class="form-control" required>
+                <option value="">Select Publisher</option>
+                {% for p in publishers %}
+                <option value="{{ p.publisher_id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Authors</label>
+        <select name="author_ids" multiple class="form-control" size="6">
+            {% for a in authors %}
+            <option value="{{ a.author_id }}">{{ a.name }}</option>
+            {% endfor %}
+        </select>
+        <small class="text-muted">Hold Ctrl/Cmd to select multiple authors.</small>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Category</label>
+            <input type="text" name="category" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label>Shelf Location</label>
+            <input type="text" name="shelf_location" class="form-control">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save Book</button>
+    <a href="{{ url_for('view_books') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

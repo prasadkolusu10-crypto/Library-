@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Loans{% endblock %}
+{% block content %}
+<h2>Loan Records</h2>
+<a href="{{ url_for('issue_book') }}" class="btn btn-primary mb-3">➕ Issue New Book</a>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Book</th>
+            <th>Member</th>
+            <th>Loan Date</th>
+            <th>Due Date</th>
+            <th>Return Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for l in loans %}
+        <tr>
+            <td>{{ l.title }}</td>
+            <td>{{ l.member }}</td>
+            <td>{{ l.loan_date }}</td>
+            <td>{{ l.due_date }}</td>
+            <td>{{ l.return_date or '–' }}</td>
+            <td>
+                {% if l.status == 'Overdue' %}
+                    <span class="badge bg-danger">{{ l.status }}</span>
+                {% elif l.status == 'Returned' %}
+                    <span class="badge bg-secondary">{{ l.status }}</span>
+                {% else %}
+                    <span class="badge bg-primary">{{ l.status }}</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if l.return_date is none %}
+                <a href="{{ url_for('return_book', loan_id=l.loan_id) }}" class="btn btn-sm btn-success">Return</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

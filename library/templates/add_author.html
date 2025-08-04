@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Add Author{% endblock %}
+{% block content %}
+<h2>Add New Author</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>First Name *</label>
+            <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label>Last Name *</label>
+            <input type="text" name="last_name" class="form-control" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label>Birth Date</label>
+            <input type="date" name="birth_date" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label>Nationality</label>
+            <input type="text" name="nationality" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Biography</label>
+        <textarea name="biography" class="form-control" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Save Author</button>
+    <a href="{{ url_for('view_authors') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

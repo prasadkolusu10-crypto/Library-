@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Edit Author{% endblock %}
+{% block content %}
+<h2>Edit Author: {{ author.first_name }} {{ author.last_name }}</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>First Name *</label>
+            <input type="text" name="first_name" class="form-control" value="{{ author.first_name }}" required>
+        </div>
+        <div class="col-md-6">
+            <label>Last Name *</label>
+            <input type="text" name="last_name" class="form-control" value="{{ author.last_name }}" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label>Birth Date</label>
+            <input type="date" name="birth_date" class="form-control" value="{{ author.birth_date }}">
+        </div>
+        <div class="col-md-4">
+            <label>Nationality</label>
+            <input type="text" name="nationality" class="form-control" value="{{ author.nationality }}">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Biography</label>
+        <textarea name="biography" class="form-control" rows="4">{{ author.biography }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-warning">Update Author</button>
+    <a href="{{ url_for('view_authors') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

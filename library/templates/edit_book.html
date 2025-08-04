@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Edit Book{% endblock %}
+{% block content %}
+<h2>Edit Book: {{ book.title }}</h2>
+<form method="post">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Title *</label>
+            <input type="text" name="title" class="form-control" value="{{ book.title }}" required>
+        </div>
+        <div class="col-md-6">
+            <label>ISBN *</label>
+            <input type="text" name="isbn" class="form-control" value="{{ book.isbn }}" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label>Publication Year</label>
+            <input type="number" name="publication_year" class="form-control" value="{{ book.publication_year }}">
+        </div>
+        <div class="col-md-3">
+            <label>Edition</label>
+            <input type="number" name="edition" class="form-control" value="{{ book.edition }}">
+        </div>
+        <div class="col-md-3">
+            <label>Total Copies</label>
+            <input type="number" name="total_copies" class="form-control" value="{{ book.total_copies }}" min="1">
+        </div>
+        <div class="col-md-3">
+            <label>Available Copies</label>
+            <input type="number" name="available_copies" class="form-control" value="{{ book.available_copies }}" min="0">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Publisher</label>
+            <select name="publisher_id" class="form-control" required>
+                {% for p in publishers %}
+                <option value="{{ p.publisher_id }}" {% if p.publisher_id == book.publisher_id %}selected{% endif %}>{{ p.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>Category</label>
+            <input type="text" name="category" class="form-control" value="{{ book.category }}">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Authors</label>
+        <select name="author_ids" multiple class="form-control" size="6">
+            {% for a in authors %}
+            <option value="{{ a.author_id }}" {% if a.author_id in book_authors %}selected{% endif %}>{{ a.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-warning">Update Book</button>
+    <a href="{{ url_for('view_books') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
